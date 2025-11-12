@@ -9,19 +9,25 @@ class WeatherService {
     city = city.trim();
     if (city.isEmpty) throw Exception("Ciudad vacía");
 
+    /// ✅ Se asegura cargar key desde .env
     final apiKey = dotenv.env["OPENWEATHER_API_KEY"];
-    if (apiKey == null) throw Exception("API Key no configurada");
+    if (apiKey == null || apiKey.isEmpty) {
+      throw Exception("API Key no configurada");
+    }
 
-    final uri = Uri.https(_baseUrl, "/data/2.5/weather", {
-      "q": "$city,MX",
-      "appid": apiKey,
-      "units": "metric",
-      "lang": "es",
-    });
+    final uri = Uri.https(
+      _baseUrl,
+      "/data/2.5/weather",
+      {
+        "q": "$city,MX",
+        "appid": apiKey,
+        "units": "metric",
+        "lang": "es",
+      },
+    );
 
     try {
-      final resp =
-          await http.get(uri).timeout(const Duration(seconds: 8));
+      final resp = await http.get(uri).timeout(const Duration(seconds: 8));
 
       if (resp.statusCode == 200) {
         return jsonDecode(resp.body);

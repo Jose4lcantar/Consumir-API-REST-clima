@@ -21980,7 +21980,7 @@ Qm:function Qm(){},
 aht(){var s=0,r=A.R(t.H),q,p,o,n,m,l,k
 var $async$aht=A.S(function(a,b){if(a===1)return A.O(b,r)
 while(true)switch(s){case 0:s=2
-return A.T($.al_().wG(".env"),$async$aht)
+return A.T($.al_().wG("assets/.env"),$async$aht)
 case 2:if($.Z==null)A.aoT()
 q=$.Z
 q.toString
@@ -71631,7 +71631,7 @@ if(a.length===0)throw A.f(A.cO("Ciudad vac\xeda"))
 l=$.al_()
 if(!l.a)A.a_(new A.Gl())
 k=l.b.h(0,"OPENWEATHER_API_KEY")
-if(k==null)throw A.f(A.cO("API Key no configurada"))
+if(k==null||k.length===0)throw A.f(A.cO("API Key no configurada"))
 n=A.aBn("https","api.openweathermap.org","/data/2.5/weather",A.ae(["q",a+",MX","appid",k,"units","metric","lang","es"],t.N,t.z))
 p=4
 s=7
